@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
-import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { DATA_SOURCE } from 'src/shared/database/database.providers';
 import { DataSource } from 'typeorm';
 
@@ -20,26 +19,11 @@ export class TeacherService {
       console.log('Profesor creado:', newTeacher);
       await queryRunner.commitTransaction();
     } catch (error) {
+      console.log('Error al crear profesor:', error);
       await queryRunner.rollbackTransaction();
       throw error;
     } finally {
       await queryRunner.release();
     }
-  }
-
-  findAll() {
-    return `This action returns all teacher`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} teacher`;
-  }
-
-  update(id: number, updateTeacher: UpdateTeacherDto) {
-    return `This action updates a #${id} teacher`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} teacher`;
   }
 }
