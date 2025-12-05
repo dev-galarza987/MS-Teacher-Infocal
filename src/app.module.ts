@@ -3,11 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TeacherModule } from './teacher/teacher.module';
 import { ConfigModule } from '@nestjs/config';
-import { databaseProviders } from './shared/database/database.providers';
 
 @Module({
   imports: [
-    TeacherModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
@@ -15,9 +13,6 @@ import { databaseProviders } from './shared/database/database.providers';
     TeacherModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ...databaseProviders],
-  exports: [...databaseProviders], // Exportar para que esté disponible globalmente
+  providers: [AppService],
 })
-export class AppModule {
-  constructor() {}
-}
+export class AppModule {}
