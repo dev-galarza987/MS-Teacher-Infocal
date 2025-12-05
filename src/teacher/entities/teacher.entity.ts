@@ -10,7 +10,6 @@ import {
 import { StateTeacher } from '../types/state.teacher';
 
 @Entity({ name: 'teachers' })
-// @Unique(['code', 'email', 'phone'])
 export class Teacher {
   @PrimaryGeneratedColumn({ type: 'int', name: 'teacher_id' })
   id: number;
@@ -22,7 +21,7 @@ export class Teacher {
   @Column({ type: 'varchar', name: 'name', length: 100 })
   name: string;
 
-  @Column({ type: 'varchar', name: 'lastname', length: 100 })
+  @Column({ type: 'varchar', name: 'last_name', length: 100 })
   lastname: string;
 
   @Column({ type: 'varchar', name: 'phone', length: 8 })
@@ -43,6 +42,8 @@ export class Teacher {
     default: StateTeacher.ACTIVE,
   })
   state: StateTeacher;
+
+  @Column({ type: 'varchar', name: 'role', length: 30, default: 'TEACHER' })
   role: string;
 
   @CreateDateColumn({ type: 'timestamp', name: 'created_at' })
