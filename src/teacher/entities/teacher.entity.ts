@@ -10,12 +10,13 @@ import {
 import { StateTeacher } from '../types/state.teacher';
 
 @Entity({ name: 'teachers' })
-@Unique(['code', 'email', 'phone'])
+// @Unique(['code', 'email', 'phone'])
 export class Teacher {
   @PrimaryGeneratedColumn({ type: 'int', name: 'teacher_id' })
   id: number;
 
   @Column({ type: 'int', name: 'code' })
+  @Unique(['code'])
   code: number;
 
   @Column({ type: 'varchar', name: 'name', length: 100 })
@@ -25,9 +26,11 @@ export class Teacher {
   lastname: string;
 
   @Column({ type: 'varchar', name: 'phone', length: 8 })
+  @Unique(['phone'])
   phone: string;
 
   @Column({ type: 'varchar', name: 'email', length: 255 })
+  @Unique(['email'])
   email: string;
 
   @Column({ type: 'varchar', name: 'password', length: 255 })
